@@ -1,0 +1,84 @@
+<?php
+include '../config/koneksi.php';
+
+$query = mysqli_query($koneksi, "SELECT * FROM tbl_pbb ORDER BY tahun DESC");
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pajak Bumi dan Bangunan — PAK CARIK Gandusari</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<header class="site-header scrolled" id="site-header">
+  <div class="topbar"><div class="container"><span>📍 Jl. Raya Kawi No. 57 Gandusari, Blitar &nbsp;·&nbsp; ☎ (0342) 692032</span></div></div>
+  <div class="navbar-wrap"><div class="container"><nav class="navbar">
+    <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/img/carik.png" alt="PAK CARIK"><div class="brand-copy"><p class="brand-kicker">Peningkatan Layanan Kesekretariatan</p><h1 class="brand-title">Kecamatan Gandusari</h1><p class="brand-sub">Melalui Aplikasi E-Letter</p></div></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <ul class="nav-list"><li><a href="../index.html">Beranda</a></li><li><a href="../index.html#layanan" class="active">Layanan</a></li><li><a href="../index.html#kontak">Kontak</a></li></ul>
+  </nav></div></div>
+</header>
+<div class="page-hero page-hero-pbb">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Beranda</a><span>/</span><span>Pajak Bumi dan Bangunan</span></div>
+    <h1>Pajak Bumi dan Bangunan</h1>
+    <p>Layanan informasi dan administrasi Pajak Bumi dan Bangunan.</p>
+  </div>
+</div>
+<main style="padding:48px 0 80px;">
+  <div class="container">
+    <div class="panel">
+      <div class="action-bar">
+        <div><div class="section-badge">🏠 PBB</div><h2 class="section-title" style="font-size:1.6rem;">Data Pajak Bumi dan Bangunan</h2></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+          <div class="search-box"><span>🔍</span><input type="text" id="searchInput" placeholder="Cari data..."></div>
+          <button class="btn btn-blue btn-sm" onclick="printTable()">🖨️ Cetak</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table id="tabelData">
+          <thead><tr><th>No</th><th>Nama Wajib Pajak</th><th>NOP</th><th>Alamat Objek</th><th>Luas Tanah</th><th>Luas Bangunan</th><th>NJOP</th><th>Tahun</th><th>Status Bayar</th></tr></thead>
+          <tbody>
+<?php
+$no = 1;
+if (mysqli_num_rows($query) > 0) {
+  while ($row = mysqli_fetch_assoc($query)) {
+?>
+  <tr>
+    <td><?= $no++; ?></td>
+    <td><?= $row['nama_wajib_pajak']; ?></td>
+    <td><?= $row['nop']; ?></td>
+    <td><?= $row['alamat_objek']; ?></td>
+    <td><?= $row['luas_tanah']; ?></td>
+    <td><?= $row['luas_bangunan']; ?></td>
+    <td><?= $row['njop']; ?></td>
+    <td><?= $row['tahun']; ?></td>
+    <td><?= $row['status_bayar']; ?></td>
+  </tr>
+<?php
+  }
+} else {
+?>
+  <tr>
+    <td colspan="9" style="text-align:center;padding:40px;color:var(--text-soft);">
+      <div style="font-size:2rem;margin-bottom:10px;">📭</div>
+      <strong>Belum ada data PBB.</strong><br>
+      <span style="font-size:13px;">Data akan tampil setelah dihubungkan ke database.</span>
+    </td>
+  </tr>
+<?php } ?>
+</tbody>
+        </table>
+      </div>
+      <div style="margin-top:14px;font-size:13px;color:var(--text-soft);">💡 Hubungi kantor kecamatan: (0342) 692032</div>
+    </div>
+  </div>
+</main>
+<footer class="site-footer" style="padding-top:30px;"><div class="container"><div class="footer-bottom"><span>© 2024 Kecamatan Gandusari — Portal Layanan Digital v2.0</span><a href="../index.html">← Kembali ke Beranda</a></div></div></footer>
+<script src="../assets/js/script.js"></script>
+<script>searchTable('searchInput','tabelData');</script>
+</body>
+</html>
