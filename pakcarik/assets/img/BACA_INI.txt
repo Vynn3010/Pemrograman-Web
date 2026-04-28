@@ -1,0 +1,27 @@
+PETUNJUK PENEMPATAN GAMBAR
+==========================
+
+Salin semua file gambar ke folder ini (assets/img/):
+- carik.png
+- logo-kab.png
+- icon-camat.png
+- ebookp.png
+- gplay.png
+- sop.png
+- ikon_apel.jpg
+- ikon_arsip.jpg
+- ikon_data.jpg
+- ikon_ktp.jpg
+- ikon_nikah.jpg
+- ikon_pbb.jpg
+- ikon_pelayanan.jpg
+- ikon_proposal.jpg
+- ikon_undangan.jpg
+- ikon_waris.jpg
+
+Untuk foto berita, simpan di assets/img/berita/:
+- berita1.jpg  → Foto Apel Kerja Kecamatan Gandusari
+- berita2.jpg  → Foto Purnawiyata MIN 10 Blitar
+- berita3.jpg  → Foto Pembangunan Gedung Sekolah
+- berita4.jpg  → Foto Rapat Koordinasi PKK
+- berita5.jpg  → Foto Peta Proses Bisnis
